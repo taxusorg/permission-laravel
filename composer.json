@@ -15,7 +15,8 @@
         "illuminate/support": "^5.5"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.4"
+        "phpunit/phpunit": "^6.4",
+        "vlucas/phpdotenv": "^2.4"
     },
     "autoload": {
         "psr-4": {
@@ -25,7 +26,7 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "Taxusorg\\Permission\\": "../permission"
+            "Taxusorg\\Permission\\": "../permission/src/"
         }
     }
 }
