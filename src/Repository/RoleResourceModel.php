@@ -9,6 +9,8 @@ class RoleResourceModel extends Model implements RoleResource
 {
     protected $table = 'roles';
 
+    protected $fillable = ['name'];
+
     public function allows()
     {
         return $this->hasMany(AllowsModel::class, 'role_id', 'id');
