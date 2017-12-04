@@ -28,7 +28,7 @@ class RoleResourceModel extends Model implements RoleResource
 
     public function getAllows()
     {
-        return $this['allows'];
+        return $this['allows']->pluck('name')->toArray();
     }
 
     public function addAllows($insert)
