@@ -10,6 +10,10 @@ use PHPUnit\Framework\TestCase;
 use Taxusorg\Permission\Factory;
 use Taxusorg\Permission\Permissions\Permission;
 use Taxusorg\PermissionLaravel\Repository\RoleRepository;
+use Tests\Permissions\Testing1;
+use Tests\Permissions\Testing2;
+use Tests\Permissions\Testing3;
+use Tests\Permissions\Testing5;
 
 class PermissionLaravelTest extends TestCase
 {
@@ -41,6 +45,7 @@ class PermissionLaravelTest extends TestCase
 
         $this->repository = new RoleRepository();
         $this->factory = new Factory($this->repository);
+        $this->factory->setRoleDefault(1);
 
         Permission::setFactoryCallback(function () {
             return $this->factory;
@@ -49,11 +54,11 @@ class PermissionLaravelTest extends TestCase
 
     public function testRepository()
     {
-        /*$this->repository->find(1)->addAllows(['class1', 'class2']);
-        $this->repository->find(1)->addAllows(['class1', 'class3']);
-        $this->repository->find(1)->addAllows(['class5', 'class6']);
+        $this->factory->role(1)->addAllows([Testing1::class, Testing2::class]);
+        $this->factory->role(1)->addAllows([Testing1::class, Testing3::class]);
+        $this->factory->role(1)->addAllows([Testing5::class]);
 
-        $this->repository->find(1)->deleteAllows(['class1']);*/
+        $this->factory->role(1)->deleteAllows([Testing1::class]);
 
         //$this->repository->find(1)->allows()->delete();
 
@@ -63,5 +68,12 @@ class PermissionLaravelTest extends TestCase
     public function testFactory()
     {
         $this->assertTrue(true);
+    }
+
+    public function testRoles()
+    {
+        print_r($this->factory->role(1)->allows(1));
+        $this->assertFalse(Testing1::check());
+        $this->assertTrue(Testing2::check());
     }
 }
