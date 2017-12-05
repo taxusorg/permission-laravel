@@ -19,12 +19,8 @@ class PermissionServiceProvider extends ServiceProvider
         $this->app->singleton('permission', function ($app) {
             $factory = new Factory(new RoleRepository());
             if ($this->app['auth']->check())
-                $factory->setRoleDefault($this->app['auth']->user->role_id);
+                $factory->setRolesDefault($this->app['auth']->getRole());
             return $factory;
-        });
-
-        Permission::addBefore(function () {
-            return $this->app['auth']->check();
         });
 
         Permission::setFactoryCallback(function () {
