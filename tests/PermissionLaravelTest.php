@@ -45,7 +45,7 @@ class PermissionLaravelTest extends TestCase
 
         $this->repository = new RoleRepository();
         $this->factory = new Factory($this->repository);
-        $this->factory->setRoleDefault(1);
+        $this->factory->setRolesDefault(1);
 
         Permission::setFactoryCallback(function () {
             return $this->factory;
