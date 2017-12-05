@@ -13,7 +13,7 @@ class RoleResourceModel extends Model implements RoleResource
 
     public function allows()
     {
-        return $this->hasMany(AllowModel::class, 'role_id', 'id');
+        return $this->hasMany(AllowResourceModel::class, 'role_id', 'id');
     }
 
     public function getId()

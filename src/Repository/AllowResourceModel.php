@@ -5,7 +5,7 @@ namespace Taxusorg\PermissionLaravel\Repository;
 use Illuminate\Database\Eloquent\Model;
 use Taxusorg\Permission\Contracts\PermissionResource;
 
-class AllowModel extends Model implements PermissionResource
+class AllowResourceModel extends Model implements PermissionResource
 {
     protected $table = 'permissions';
 
