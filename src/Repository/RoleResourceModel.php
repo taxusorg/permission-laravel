@@ -13,7 +13,7 @@ class RoleResourceModel extends Model implements RoleResource
 
     public function allows()
     {
-        return $this->hasMany(AllowsModel::class, 'role_id', 'id');
+        return $this->hasMany(AllowModel::class, 'role_id', 'id');
     }
 
     public function getId()
@@ -28,7 +28,7 @@ class RoleResourceModel extends Model implements RoleResource
 
     public function getAllows()
     {
-        return $this['allows']->pluck('name')->toArray();
+        return $this['allows'];
     }
 
     public function addAllows($insert)
