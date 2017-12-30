@@ -46,6 +46,13 @@ class PermissionLaravelTest extends TestCase
         $this->repository = new RoleRepository();
         $this->factory = new Factory($this->repository);
         $this->factory->setRolesDefault(1);
+        $this->factory->registerPermissions([
+            Testing1::class,
+            Testing2::class,
+            Testing3::class,
+            Testing4::class,
+            Testing5::class,
+        ]);
 
         Permission::setFactoryCallback(function () {
             return $this->factory;
@@ -72,7 +79,7 @@ class PermissionLaravelTest extends TestCase
 
     public function testRoles()
     {
-        print_r($this->factory->role(1)->allows(1));
+        print_r($this->factory->role(1)->allows(Testing1::getClass()));
         $this->assertFalse(Testing1::check());
         $this->assertTrue(Testing2::check());
     }

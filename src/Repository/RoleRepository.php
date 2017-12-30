@@ -32,4 +32,31 @@ class RoleRepository implements RepositoryContracts
     {
         return RoleResourceModel::where('name', $name)->first();
     }
+
+    /**
+     * @param string $name
+     * @return \Taxusorg\Permission\Contracts\RoleResource
+     */
+    public function add($name)
+    {
+        return RoleResourceModel::create(['name' => $name]);
+    }
+
+    /**
+     * @param array ...$id
+     * @return bool|int
+     */
+    public function delete(...$id)
+    {
+        return RoleResourceModel::destroy(...$id);
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function deleteByName($name)
+    {
+        return RoleResourceModel::where(['name' => $name])->destroy();
+    }
 }

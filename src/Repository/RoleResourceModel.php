@@ -26,11 +26,18 @@ class RoleResourceModel extends Model implements RoleResource
         return $this['name'];
     }
 
+    /**
+     * @return AllowResourceModel
+     */
     public function getAllows()
     {
         return $this['allows'];
     }
 
+    /**
+     * @param array|\IteratorAggregate $insert
+     * @return bool|void
+     */
     public function addAllows($insert)
     {
         foreach ($insert as $item) {
@@ -38,6 +45,10 @@ class RoleResourceModel extends Model implements RoleResource
         }
     }
 
+    /**
+     * @param array|\IteratorAggregate $delete
+     * @return bool|void
+     */
     public function deleteAllows($delete)
     {
         $this->allows()->whereIn('name', $delete)->delete();
